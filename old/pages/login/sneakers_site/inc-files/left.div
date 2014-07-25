@@ -1,0 +1,6 @@
+<div id="left">
+<a href=".">Начало</a> <br>
+<a href="list_cars.php">Списък</a> <br>
+<a href="insert_car.php">Добавяне</a> <br>
+<a href="contacts.php">Контакти</a><br>
+</div>

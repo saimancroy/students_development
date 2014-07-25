@@ -1,0 +1,21 @@
+ #top {height:120px; width:100%; margin:0px; padding-top:6px; padding-bottom:6px; border-bottom:2px solid #2C6700; background:#92CD00; color:#E5E4D7;}
+ #left {width:10%; float:left; padding-top:3px;}
+ #content {width:90%; min-height:400px; padding-top:6px; float:left;}
+ #bottom {width:100%; float:left; border-top:2px solid #2C6700; background:#92CD00; color:#E5E4D7;}
+ 
+ a:link,a:visited
+{
+display:block;
+font-weight:bold;
+color:#E5E4D7;
+background-color:#92CD00;
+width:120px;
+text-align:center;
+padding:4px;
+text-decoration:none;
+}
+a:hover,a:active
+{
+background-color:#2C6700;
+}
+
