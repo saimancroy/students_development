@@ -87,7 +87,10 @@ require 'database.php';
                       <tbody>
 						  <?php
 							$pdo = Database::connect();							
-							$sql = 'SELECT students.student_fname, students.student_lname, students.student_fnumber, courses.course_name, students.student_course_id, courses.course_id, speciality_name_short, students.student_education_form, students_assessments.sa_subject_id, subjects.subject_id
+							$sql = 'SELECT students.student_fname, students.student_lname, students.student_fnumber, courses.course_name, students.student_course_id, 
+									courses.course_id,speciality_name_short, students.student_education_form, students_assessments.sa_subject_id, subjects.subject_id, 
+									subjects.subject_workload_lectures, students_assessments.sa_workload_lectures, students_assessments.sa_workload_exercises,
+									subjects.subject_workload_exercises, students_assessments.sa_assesment
 									FROM students
 									
 									LEFT JOIN courses
@@ -100,12 +103,42 @@ require 'database.php';
 									ON students.student_speciality_id=specialities.speciality_id
 									
 									LEFT JOIN subjects
-									ON students_assessments.sa_subject_id=subjects.subject_id';
+									ON students_assessments.sa_subject_id=subjects.subject_id';									
 								foreach ($pdo->query($sql) as $row) {
 								echo '<tr>';
                                 echo '<td>'. $row['student_fname'] . " " . $row['student_lname'] . " " . "(" . $row['student_fnumber'] . ")" . '</td>';							                            
                                 echo '<td>'. $row['course_name'] . ", " . $row['speciality_name_short'] . " (" . $row['student_education_form'] . ")" . '</td>';
-                                echo '<td>'. $row['student_fname'] . '</td>';		
+                                
+                               $sql = 'SELECT * FROM subjects WHERE subject_id=1';
+                                echo '<td>'. $row['sa_workload_lectures'] . " (" . $row['subject_workload_lectures'] . ")". '</td>';
+                                echo '<td>'. $row['sa_workload_exercises'] . " (" . $row['subject_workload_exercises'] . ")". '</td>';                                
+                                /*switch ($row['sa_assesment']) {
+												case "2":
+													echo "Слаб ";
+													break;
+												case "3":
+													echo "Среден";
+													break;
+												case "4":
+													echo "Добър ";
+												case "5":
+													echo "Мн. Добър ";
+												case "6":
+													echo "Отличен "
+													break;
+											}; . */
+                                echo '<td>'. " (" . $row['sa_assesment'] . ")". '</td>'; 
+                                
+                                $sql = 'SELECT subject_id FROM subjects WHERE subject_id=2';
+                                echo '<td>'. $row['sa_workload_lectures'] . " (" . $row['subject_workload_lectures'] . ")". '</td>';
+                                echo '<td>'. $row['sa_workload_exercises'] . " (" . $row['subject_workload_exercises'] . ")". '</td>';
+                                echo '<td>'. " (" . $row['sa_assesment'] . ")". '</td>';
+                                
+                                $sql = 'SELECT * FROM subjects WHERE subject_id=3';
+                                echo '<td>'. $row['sa_workload_lectures'] . " (" . $row['subject_workload_lectures'] . ")". '</td>';
+                                echo '<td>'. $row['sa_workload_exercises'] . " (" . $row['subject_workload_exercises'] . ")". '</td>';
+                                echo '<td>'. " (" . $row['sa_assesment'] . ")". '</td>';
+                                
                                 echo '</td>';
                                 echo '</tr>'; 
 							}                              
