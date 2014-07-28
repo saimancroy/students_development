@@ -10,6 +10,7 @@
         // keep track post values
         $user_name = $_POST['user_name'];
         $user_password = $_POST['user_password'];
+        $user_passwordHash = sha1($user_password);
         
         // validate input
         $valid = true;
@@ -32,7 +33,7 @@
             $sql=("SELECT * FROM users WHERE user_name= :hjhjhjh AND user_password= :asas");
             $q = $pdo->prepare($sql);
 			$q->bindParam(':hjhjhjh', $user_name);
-			$q->bindParam(sha1(':asas'), $user_password);
+			$q->bindParam(':asas', $user_passwordHash);
 			$q->execute();
 			$rows = $q->fetch(PDO::FETCH_NUM);
 			if ($rows > 0) {

@@ -14,7 +14,7 @@
 </head>
 <body>
 <ul class="nav nav-tabs" role="tablist">
-  <li class="active"><a href="#">Home</a></li>
+  <li class="active"><a href="/students_development2/index.php">Home</a></li>
   <li><a href="/students_development2/pages/students/students.php">Студенти</a></li>
   <li><a href="/students_development2/pages/courses/courses.php">Курсове</a></li>
   <li><a href="/students_development2/pages/specialities/specialities.php">Дисциплини</a></li>
