@@ -73,9 +73,11 @@
                                 echo '<td width=250>';
                                 echo '<a class="btn" href="students_read.php?student_id='.$row['student_id'].'">Read</a>';
                                 echo ' ';
+                                if($_SESSION['is_admin']=0) {
                                 echo '<a class="btn btn-success" href="students_edit.php?student_id='.$row['student_id'].'">Промени</a>';
                                 echo ' ';
                                 echo '<a class="btn btn-danger" href="students_delete.php?student_id='.$row['student_id'].'">Изтрий</a>';
+								}
                                 echo '</td>';
                                 echo '</tr>';
                                 }

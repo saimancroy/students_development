@@ -37,9 +37,11 @@
                                 echo '<td width=250>';
                                 echo '<a class="btn" href="specialities_read.php?speciality_id='.$row['speciality_id'].'">Read</a>';
                                 echo ' ';
+                                if($_SESSION['is_admin']=0) {
                                 echo '<a class="btn btn-success" href="specialities_edit.php?speciality_id='.$row['speciality_id'].'">Промени</a>';
                                 echo ' ';
                                 echo '<a class="btn btn-danger" href="specialities_delete.php?speciality_id='.$row['speciality_id'].'">Изтрий</a>';
+								}
                                 echo '</td>';
                                 echo '</tr>';
                        }

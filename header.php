@@ -19,8 +19,10 @@
   <li><a href="/students_development2/pages/courses/courses.php">Курсове</a></li>
   <li><a href="/students_development2/pages/specialities/specialities.php">Дисциплини</a></li>
   <li><a href="/students_development2/pages/subjects/subjects.php">Хорариум</a></li>
-  <li><a href="/students_development2/pages/users/users.php">Потребители</a></li>
-  <li><a>Username: <?php echo $_SESSION["user_name"] ?> </a><li>
+  <li><a><?php if($_SESSION['is_admin']=0) { Администратор:  echo "Админ: " . $_SESSION['user_name'];
+				?>  <li><a href="/students_development2/pages/users/users.php">Потребители</a></li>
+				<?php
+				} else { echo "Потребител: " . $_SESSION['user_name']; } ?> </a><li>
   <li><a href="/students_development2/pages/login/logout.php">Logout</a></li>
 </ul>
 

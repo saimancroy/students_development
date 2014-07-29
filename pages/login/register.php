@@ -25,6 +25,7 @@
         $user_email = $_POST['user_email'];
         $user_password = $_POST['user_password'];
         $user_passwordHash = sha1($_POST['user_password']);
+        $is_admin = $_POST['is_admin'];
         
          
         // validate input
@@ -64,9 +65,9 @@
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            $sql = "INSERT INTO users (user_name,user_fname,user_lname, user_email, user_password) values(?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO users (user_name,user_fname,user_lname, user_email, user_password, is_admin) values(?, ?, ?, ?, ?, ?)";
             $q = $pdo->prepare($sql);
-            $q->execute(array($user_name,$user_fname,$user_lname, $user_email, $user_passwordHash));
+            $q->execute(array($user_name,$user_fname,$user_lname, $user_email, $user_passwordHash, $is_admin));
             Database::disconnect();
             header("Location: register.php");            
         }
@@ -126,7 +127,15 @@
                                 <span class="help-inline"><?php echo $user_passwordError;?></span>
                             <?php endif;?>
                         </div>
-                      </div>                     
+                      </div>  
+                      
+                      <div class="controls">
+							<select name="is_admin">
+							<option value="0" selected="selected">   Потребител   </option>
+							<option value="1"> Администратор </option>
+							</select>
+						  
+                                         
                       <div class="form-actions">
                           <button type="submit" class="btn btn-success">Създай</button>
                           <a class="btn" href="login.php">Назад</a>

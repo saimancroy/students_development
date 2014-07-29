@@ -27,7 +27,7 @@
             $valid = false;
         }
 
-        $valid = tude;
+        
         if (empty($speciality_name_short)) {
             $speciality_name_shortError = 'Въведете абривиатура';
             $valid = false;

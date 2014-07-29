@@ -12,6 +12,7 @@
         $user_password = $_POST['user_password'];
         $user_passwordHash = sha1($user_password);
         
+        
         // validate input
         $valid = true;
         if (empty($user_name)) {
@@ -26,21 +27,29 @@
         }
         
         if ($valid) {
-			if(!isset($_SESSION['user_name'])){
-				$_SESSION['user_name']=$user_name;}
+			
+				
 			$pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql=("SELECT * FROM users WHERE user_name= :hjhjhjh AND user_password= :asas");
+            $sql=("SELECT user_name, user_password, is_admin FROM users WHERE user_name= :hjhjhjh AND user_password= :asas LIMIT 1");
             $q = $pdo->prepare($sql);
 			$q->bindParam(':hjhjhjh', $user_name);
 			$q->bindParam(':asas', $user_passwordHash);
 			$q->execute();
-			$rows = $q->fetch(PDO::FETCH_NUM);
-			if ($rows > 0) {
+			$row = $q->fetch(PDO::FETCH_OBJ);
+			//var_dump($row);die;
+			if($row) {
+				//var_dump($row->is_admin); die;
 				
-				header("location: /students_development2/index.php");
+									
 				if(!isset($_SESSION['user_name'])){
-				$_SESSION['user_name']=$user_name;}
+				$_SESSION['user_name']=$user_name;}								
+				if(!isset($_SESSION['is_admin'])){					
+				$_SESSION['is_admin']=strval($row->is_admin);}
+					header("location: /students_development2/index.php");
+				
+				
+							
 			}			
 			else{
  				$user_nameError = 'Потребителското име и паролата не са намерени';
